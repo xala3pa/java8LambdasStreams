@@ -110,7 +110,7 @@ public class Lesson1 {
     private void exercise5() {
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
-    /* YOUR CODE HERE */
+        new Thread(() -> list.forEach(System.out::print)).start();
     }
 
     /**
