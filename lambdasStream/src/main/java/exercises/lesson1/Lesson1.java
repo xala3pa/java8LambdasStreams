@@ -95,7 +95,11 @@ public class Lesson1 {
         map.put("b", 2);
         map.put("a", 1);
 
-        /* YOUR CODE HERE */
+        StringBuilder appendedLetter = new StringBuilder();
+
+        map.forEach((letter, number) -> appendedLetter.append(letter).append(number));
+
+        System.out.println(appendedLetter);
     }
 
     /**
