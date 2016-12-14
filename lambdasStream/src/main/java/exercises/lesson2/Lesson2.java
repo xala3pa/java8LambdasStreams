@@ -35,8 +35,8 @@ public class Lesson2 {
         exercise1();
         System.out.println("Running exercise 2 solution...");
         exercise2();
-//    System.out.println("Running exercise 3 solution...");
-//    exercise3();
+        System.out.println("Running exercise 3 solution...");
+        exercise3();
 //    System.out.println("Running exercise 4 solution...");
 //    exercise4();
 //    System.out.println("Running exercise 5 solution...");
@@ -96,7 +96,12 @@ public class Lesson2 {
         List<String> list = Arrays.asList(
                 "The", "quick", "brown", "fox", "jumped", "over", "the", "lazy", "dog");
 
-    /* YOUR CODE HERE */
+        String hyphenWord = list.stream()
+                .skip(1)
+                .limit(3)
+                .collect(Collectors.joining("-"));
+
+        assertThat(hyphenWord, is("quick-brown-fox"));
     }
 
     /**
