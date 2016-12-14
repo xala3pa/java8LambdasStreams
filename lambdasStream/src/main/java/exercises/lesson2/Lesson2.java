@@ -12,8 +12,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 
 /**
  * @author Speakjava (Simon Ritter)
@@ -30,18 +33,18 @@ public class Lesson2 {
     System.out.println("JDK 8 Lambdas and Streams MOOC Lesson 2");
     System.out.println("Running exercise 1 solution...");
     exercise1();
-    System.out.println("Running exercise 2 solution...");
-    exercise2();
-    System.out.println("Running exercise 3 solution...");
-    exercise3();
-    System.out.println("Running exercise 4 solution...");
-    exercise4();
-    System.out.println("Running exercise 5 solution...");
-    exercise5();
-    System.out.println("Running exercise 6 solution...");
-    exercise6();
-    System.out.println("Running exercise 7 solution...");
-    exercise7();
+//    System.out.println("Running exercise 2 solution...");
+//    exercise2();
+//    System.out.println("Running exercise 3 solution...");
+//    exercise3();
+//    System.out.println("Running exercise 4 solution...");
+//    exercise4();
+//    System.out.println("Running exercise 5 solution...");
+//    exercise5();
+//    System.out.println("Running exercise 6 solution...");
+//    exercise6();
+//    System.out.println("Running exercise 7 solution...");
+//    exercise7();
   }
 
   /**
@@ -54,7 +57,10 @@ public class Lesson2 {
     List<String> list = Arrays.asList(
         "The", "Quick", "BROWN", "Fox", "Jumped", "Over", "The", "LAZY", "DOG");
 
-    /* YOUR CODE HERE */
+      List<String> lowerCaseList =  list.stream().map(String::toLowerCase).collect(Collectors.toList());
+
+      assertThat(lowerCaseList,
+              is(Arrays.asList("the", "quick", "brown", "fox", "jumped", "over", "the", "lazy", "dog")));
   }
 
   /**
