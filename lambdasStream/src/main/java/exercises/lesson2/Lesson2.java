@@ -37,8 +37,8 @@ public class Lesson2 {
         exercise2();
         System.out.println("Running exercise 3 solution...");
         exercise3();
-//    System.out.println("Running exercise 4 solution...");
-//    exercise4();
+        System.out.println("Running exercise 4 solution...");
+        exercise4();
 //    System.out.println("Running exercise 5 solution...");
 //    exercise5();
 //    System.out.println("Running exercise 6 solution...");
@@ -110,7 +110,10 @@ public class Lesson2 {
     private void exercise4() throws IOException {
         try (BufferedReader reader = Files.newBufferedReader(
                 Paths.get("SonnetI.txt"), StandardCharsets.UTF_8)) {
-      /* YOUR CODE HERE */
+
+            long numberOfLines = reader.lines().count();
+
+            assertThat(numberOfLines, is(14L));
         }
     }
 
