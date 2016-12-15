@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -44,8 +45,8 @@ public class Lesson2 {
         exercise5();
         System.out.println("Running exercise 6 solution...");
         exercise6();
-//    System.out.println("Running exercise 7 solution...");
-//    exercise7();
+        System.out.println("Running exercise 7 solution...");
+        exercise7();
     }
 
     /**
@@ -165,7 +166,16 @@ public class Lesson2 {
     private void exercise7() throws IOException {
         try (BufferedReader reader = Files.newBufferedReader(
                 Paths.get("SonnetI.txt"), StandardCharsets.UTF_8)) {
-      /* YOUR CODE HERE */
+
+            List<String> notDuplicateWordsOrdered =
+                    reader.lines()
+                            .flatMap(line -> Stream.of(line.split(WORD_REGEXP)))
+                            .map(String::toLowerCase)
+                            .distinct()
+                            .sorted(Comparator.comparingInt(String::length))
+                            .collect(Collectors.toList());
+
+            notDuplicateWordsOrdered.forEach(System.out::println);
         }
     }
 
