@@ -42,8 +42,8 @@ public class Lesson2 {
         exercise4();
         System.out.println("Running exercise 5 solution...");
         exercise5();
-//    System.out.println("Running exercise 6 solution...");
-//    exercise6();
+        System.out.println("Running exercise 6 solution...");
+        exercise6();
 //    System.out.println("Running exercise 7 solution...");
 //    exercise7();
     }
@@ -146,7 +146,16 @@ public class Lesson2 {
     private void exercise6() throws IOException {
         try (BufferedReader reader = Files.newBufferedReader(
                 Paths.get("SonnetI.txt"), StandardCharsets.UTF_8)) {
-      /* YOUR CODE HERE */
+
+            List<String> notDuplicateWordsOrdered =
+                    reader.lines()
+                            .flatMap(line -> Stream.of(line.split(WORD_REGEXP)))
+                            .map(String::toLowerCase)
+                            .distinct()
+                            .sorted()
+                            .collect(Collectors.toList());
+
+            notDuplicateWordsOrdered.forEach(System.out::println);
         }
     }
 
