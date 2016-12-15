@@ -14,9 +14,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * @author Speakjava (Simon Ritter)
@@ -39,8 +40,8 @@ public class Lesson2 {
         exercise3();
         System.out.println("Running exercise 4 solution...");
         exercise4();
-//    System.out.println("Running exercise 5 solution...");
-//    exercise5();
+        System.out.println("Running exercise 5 solution...");
+        exercise5();
 //    System.out.println("Running exercise 6 solution...");
 //    exercise6();
 //    System.out.println("Running exercise 7 solution...");
@@ -126,7 +127,14 @@ public class Lesson2 {
     private void exercise5() throws IOException {
         try (BufferedReader reader = Files.newBufferedReader(
                 Paths.get("SonnetI.txt"), StandardCharsets.UTF_8)) {
-      /* YOUR CODE HERE */
+
+            List<String> notDuplicateWords =
+                    reader.lines()
+                            .flatMap(line -> Stream.of(line.split(WORD_REGEXP)))
+                            .distinct()
+                            .collect(Collectors.toList());
+
+            notDuplicateWords.forEach(System.out::println);
         }
     }
 
