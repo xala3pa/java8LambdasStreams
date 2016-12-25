@@ -8,7 +8,9 @@ package lesson3;
 import java.io.IOException;
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * @author Simon Ritter (@speakjava)
@@ -90,9 +92,16 @@ public class Lesson3 {
      * @return The list processed in whatever way you want
      */
     static List<String> processWords(List<String> wordList, boolean parallel) {
-        // YOUR CODE HERE
+        Stream<String> stream = wordList.stream();
 
-        return null;
+        if (parallel)
+            stream = wordList.parallelStream();
+
+        return stream
+                .map(String::toLowerCase)
+                .sorted()
+                .distinct()
+                .collect(Collectors.toList());
     }
 
     /**
@@ -108,7 +117,7 @@ public class Lesson3 {
         measure("Sequential", () -> computeLevenshtein(wordList, false));
         measure("Parallel", () -> computeLevenshtein(wordList, true));
 
-//    measure("Sequential", () -> processWords(wordList, false));
-//    measure("Parallel", () -> processWords(wordList, true));
+        measure("Sequential", () -> processWords(wordList, false));
+        measure("Parallel", () -> processWords(wordList, true));
     }
 }
